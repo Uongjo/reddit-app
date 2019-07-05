@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Posts from "./components/post";
 import "./App.css";
+import Search from "./components/search";
 
 /*
 To do list: 
@@ -27,14 +28,14 @@ class App extends Component {
   }
 
   updatePosts = async subreddit => {
-    const url = "https://www.reddit.com/r/" + subreddit + "/top.json";
+    const url = "https://www.reddit.com/r/" + subreddit + "/top.json?limit=50";
     console.log("URL: ", url);
     const response = await fetch(url);
     const body = await response.json();
     const subredditPosts = body.data.children;
-    let currentID = 0;
+    let currentID = 1;
     let posts = [];
-    this.setState({ posts }); // what the fuck
+    this.setState({ posts });
     subredditPosts.map(currentPost =>
       posts.push({
         id: currentID++,
@@ -53,20 +54,18 @@ class App extends Component {
     this.updatePosts(subreddit);
   };
 
+  handleIncrement = () => {};
+
+  handleDecrement = () => {};
+
   render() {
     return (
       <React.Fragment>
-        <div className="search">
-          <form id="myForm">
-            <h1>Subreddit Post Generator</h1>
-            <input
-              type="search"
-              id="mySearch"
-              placeholder="Insert Subreddit here"
-            />
-          </form>
-          <button onClick={this.handleSearch}>Search</button>
-        </div>
+        <h1>Subreddit Post Generator</h1>
+        <Search
+          onSearch={this.handleSearch}
+          numPosts={this.state.posts.length}
+        />
         <ul>
           {this.state.posts.map(post => (
             <Posts

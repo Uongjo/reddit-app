@@ -13,18 +13,18 @@ class Post extends Component {
   render() {
     return (
       <div className="postClass">
-        <img
-          src={
-            this.state.thumbnail === "" || this.state.thumbnail === "self"
-              ? this.props.defaultThumbnail
-              : this.state.thumbnail
-          }
-        />
-        <h3>
-          <a href={this.state.url} target="_blank">
-            {this.state.id + 1}: {this.state.title}
-          </a>
-        </h3>
+        <a href={this.state.url} target="_blank">
+          <img
+            src={
+              this.state.thumbnail === "" || this.state.thumbnail === "self"
+                ? this.props.defaultThumbnail
+                : this.state.thumbnail
+            }
+          />
+          <h3>
+            {this.state.id}: {this.state.title}
+          </h3>
+        </a>
       </div>
     );
   }

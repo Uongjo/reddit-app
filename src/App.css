@@ -3,11 +3,24 @@
 }
 
 h1 {
+  padding-left: 40px;
   color: tomato;
 }
 
 .search {
   padding-left: 40px;
+}
+
+#btn1 {
+  margin-left: 50px;
+}
+
+form {
+  display: inline;
+}
+
+.pageIndex {
+  display: inline;
 }
 
 .App-logo {
