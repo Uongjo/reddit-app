@@ -7,15 +7,22 @@ class Search extends Component {
   createButtons = () => {
     let buttons = [];
     buttons.push(
-      <button id="leftBtn" onClick="onDecrement">
+      <button id="leftBtn" key="-" onClick={this.props.onDecrement}>
         -
       </button>
     );
-    for (let i = 1; i <= Math.ceil(this.props.numPosts / 10); i++) {
-      buttons.push(<button key={i}>{i}</button>);
+    for (let i = 1; i <= this.props.numPages; i++) {
+      buttons.push(
+        <button key={i} onClick={() => this.props.onSetPageIndex(i)}>
+          {i}
+        </button>
+      );
     }
-    buttons.push(<button onClick="onIncrement">+</button>);
-    console.log(buttons);
+    buttons.push(
+      <button key="+" onClick={this.props.onIncrement}>
+        +
+      </button>
+    );
     return buttons;
   };
 

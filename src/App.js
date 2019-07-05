@@ -3,18 +3,6 @@ import Posts from "./components/post";
 import "./App.css";
 import Search from "./components/search";
 
-/*
-To do list: 
-
-Form input
-
-Parse input and make API call
-
-Create Post component
-
-link post component with App.js
-*/
-
 class App extends Component {
   state = {};
 
@@ -22,6 +10,8 @@ class App extends Component {
     super();
     this.state = {
       posts: [],
+      pageIndex: 0,
+      numPages: 0,
       defaultThumbnail:
         "https://i2.wp.com/www.onetechstop.net/wp-content/uploads/2019/03/Reddit_logo_full_1.png?fit=5000%2C1620&ssl=1"
     };
@@ -29,7 +19,6 @@ class App extends Component {
 
   updatePosts = async subreddit => {
     const url = "https://www.reddit.com/r/" + subreddit + "/top.json?limit=50";
-    console.log("URL: ", url);
     const response = await fetch(url);
     const body = await response.json();
     const subredditPosts = body.data.children;
@@ -45,8 +34,18 @@ class App extends Component {
         text: currentPost.data.selftext
       })
     );
-    console.log("Posts", posts);
-    this.setState({ posts });
+    const numPages = Math.ceil(posts.length / 10);
+    this.setState({
+      posts,
+      numPages
+    });
+  };
+
+  getPosts = () => {
+    let allPosts = [...this.state.posts];
+    let startPage = this.state.pageIndex * 10;
+    const selectedPosts = allPosts.splice(startPage, startPage + 10);
+    return selectedPosts;
   };
 
   handleSearch = () => {
@@ -54,9 +53,26 @@ class App extends Component {
     this.updatePosts(subreddit);
   };
 
-  handleIncrement = () => {};
+  handleIncrement = () => {
+    const pageIndex =
+      this.state.pageIndex + 1 < this.state.numPages
+        ? this.state.pageIndex + 1
+        : this.state.pageIndex;
+    this.setState({ pageIndex });
+    console.log("In handle Increment: ", pageIndex);
+  };
 
-  handleDecrement = () => {};
+  handleDecrement = () => {
+    const pageIndex =
+      this.state.pageIndex - 1 >= 0
+        ? this.state.pageIndex - 1
+        : this.state.pageIndex;
+    this.setState({ pageIndex });
+  };
+
+  handleSetPageIndex = index => {
+    this.setState({ pageIndex: index - 1 });
+  };
 
   render() {
     return (
@@ -64,10 +80,13 @@ class App extends Component {
         <h1>Subreddit Post Generator</h1>
         <Search
           onSearch={this.handleSearch}
-          numPosts={this.state.posts.length}
+          numPages={this.state.numPages}
+          onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
+          onSetPageIndex={this.handleSetPageIndex}
         />
         <ul>
-          {this.state.posts.map(post => (
+          {this.getPosts().map(post => (
             <Posts
               key={post.id}
               data={post}
