@@ -3,6 +3,17 @@ import Posts from "./components/post";
 import "./App.css";
 import Search from "./components/search";
 
+/*
+To do:
+
+Add keyboard functionality
+
+Make posts not look so ugly
+
+Potentially add feature where when user scrolls to the bottom of the page,
+auto reload another 10 postsk
+*/
+
 class App extends Component {
   state = {};
 
@@ -46,8 +57,7 @@ class App extends Component {
   getPosts = () => {
     let allPosts = [...this.state.posts];
     let startPage = this.state.pageIndex * 10;
-    const selectedPosts = allPosts.splice(startPage, startPage + 10);
-    console.log("selectedPosts: ", selectedPosts);
+    const selectedPosts = allPosts.splice(startPage, 10);
     return selectedPosts;
   };
 

@@ -22,11 +22,37 @@ form {
 .pageIndex {
   display: inline;
 }
-
+/* 
 .flexContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   flex-wrap: wrap;
+} */
+
+.flexContainer {
+  columns: 5;
+  column-gap: 0px;
+}
+
+@media (max-width: 1100px) {
+  .flexContainer {
+    columns: 4;
+    column-gap: 0px;
+  }
+}
+
+@media (max-width: 900px) {
+  .flexContainer {
+    columns: 3;
+    column-gap: 0px;
+  }
+}
+
+@media (max-width: 675px) {
+  .flexContainer {
+    columns: 2;
+    column-gap: 0px;
+  }
 }
 
 .App-logo {
