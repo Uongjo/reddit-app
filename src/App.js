@@ -31,12 +31,14 @@ class App extends Component {
         title: currentPost.data.title,
         url: "https://www.reddit.com" + currentPost.data.permalink,
         thumbnail: currentPost.data.thumbnail,
-        text: currentPost.data.selftext
+        text: currentPost.data.selftext,
+        upvotes: currentPost.data.ups
       })
     );
     const numPages = Math.ceil(posts.length / 10);
     this.setState({
       posts,
+      pageIndex: 0,
       numPages
     });
   };
@@ -45,6 +47,7 @@ class App extends Component {
     let allPosts = [...this.state.posts];
     let startPage = this.state.pageIndex * 10;
     const selectedPosts = allPosts.splice(startPage, startPage + 10);
+    console.log("selectedPosts: ", selectedPosts);
     return selectedPosts;
   };
 
@@ -59,7 +62,6 @@ class App extends Component {
         ? this.state.pageIndex + 1
         : this.state.pageIndex;
     this.setState({ pageIndex });
-    console.log("In handle Increment: ", pageIndex);
   };
 
   handleDecrement = () => {
@@ -86,13 +88,15 @@ class App extends Component {
           onSetPageIndex={this.handleSetPageIndex}
         />
         <ul>
-          {this.getPosts().map(post => (
-            <Posts
-              key={post.id}
-              data={post}
-              defaultThumbnail={this.state.defaultThumbnail}
-            />
-          ))}
+          <div className="flexContainer">
+            {this.getPosts().map(post => (
+              <Posts
+                key={post.id}
+                data={post}
+                defaultThumbnail={this.state.defaultThumbnail}
+              />
+            ))}
+          </div>
         </ul>
       </React.Fragment>
     );

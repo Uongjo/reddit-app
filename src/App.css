@@ -4,7 +4,7 @@
 
 h1 {
   padding-left: 40px;
-  color: tomato;
+  color: rgb(255, 69, 0);
 }
 
 .search {
@@ -21,6 +21,12 @@ form {
 
 .pageIndex {
   display: inline;
+}
+
+.flexContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .App-logo {
