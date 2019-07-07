@@ -1,17 +1,19 @@
 .postClass {
-  background-color: #ffa970;
-  margin: 7px;
-  width: 200px;
+  background-color: #e3e3e3;
+  margin-right: 10px;
+  margin-bottom: 10px;
   text-align: center;
-  border-radius: 10px;
   overflow: hidden;
   break-inside: avoid;
 }
 
 img {
-  width: 200px;
+  width: 140px;
+  padding-top: 20px;
 }
 
-h3 {
+h3,
+p {
   padding: 0px 5px;
+  font-family: "Montserrat", sans-serif;
 }

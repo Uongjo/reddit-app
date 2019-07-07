@@ -8,10 +8,12 @@ To do:
 
 Add keyboard functionality
 
+Add pagination
+
 Make posts not look so ugly
 
 Potentially add feature where when user scrolls to the bottom of the page,
-auto reload another 10 postsk
+auto reload another 10 posts
 */
 
 class App extends Component {
