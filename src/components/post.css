@@ -5,6 +5,7 @@
   text-align: center;
   overflow: hidden;
   break-inside: avoid;
+  /* border-radius: 15px; */
 }
 
 img {
@@ -15,5 +16,5 @@ img {
 h3,
 p {
   padding: 0px 5px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
