@@ -7,7 +7,6 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = this.props.data;
-    console.log(this.props.defaultThumbnail);
   }
 
   render() {

@@ -32,6 +32,22 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleArrowKey, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleArrowKey, false);
+  }
+
+  handleArrowKey = event => {
+    if (event.which === 37) {
+      console.log("Dec: ", event.key);
+      this.handleDecrement();
+    } else if (event.which === 39) {
+      this.handleIncrement();
+    }
+  };
   updatePosts = async subreddit => {
     const url = "https://www.reddit.com/r/" + subreddit + "/top.json?limit=50";
     const response = await fetch(url);
