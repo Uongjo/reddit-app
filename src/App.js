@@ -6,9 +6,11 @@ import Search from "./components/search";
 /*
 To do:
 
+Error handling on invalid subreddit
+
 Add keyboard functionality
 
-Add pagination
+Add highlighting on button for current page
 
 Make posts not look so ugly
 
