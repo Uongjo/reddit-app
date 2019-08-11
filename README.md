@@ -32,7 +32,7 @@ npm run start
 
 * How to use React at an intermediate level
 * How to add keyboard functionality to facilitate a more frictionless UX
-* How to combine flexbox and media queries to create a responsive mosaic layout
+* How to combine multiple columns and media queries to create a responsive mosaic layout
 
 ## Plans for the future
 
