@@ -8,14 +8,9 @@ To do:
 
 Error handling on invalid subreddit
 
-Add keyboard functionality
-
 Add highlighting on button for current page
 
-Make posts not look so ugly
-
-Potentially add feature where when user scrolls to the bottom of the page,
-auto reload another 10 posts
+Lazy Loading?
 */
 
 class App extends Component {
